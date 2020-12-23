@@ -87,7 +87,7 @@ if ($result->num_rows === 1)
  </div>
 
       </div>
-      <span style="font-weight:bold; position:relative; top:20px; left:10px; color:red;" >Buy Passcode Online (Coming soon...)</span>
+      <span style="font-weight:bold; position:relative; top:20px; left:25px; color:red;" >Buy Passcode Online (Coming soon...)</span>
       <br><br><br>
       <div align="right" style="padding:0px 20px 0px 20px">
 		<a title="We accept Online Payment."  STYLE='text-decoration:none'  href="#">
