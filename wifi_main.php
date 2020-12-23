@@ -62,7 +62,7 @@ if ($result->num_rows === 1)
   <img src="images/icon_3.jpg" > <font color="red" size="-1" style="font-weight:bold">Platinum Package</font> <s class="text-red">200</s> ลดเหลือ 100 บาท / 12 ชั่วโมง (ภายใน 3 เดือน, ใช้ได้ 1 เครื่อง) <br>
    <img src="images/icon_3.jpg" > <font color="blue" size="-1" style="font-weight:bold">Crystal Package</font> <s class="text-red">300</s> ลดเหลือ 200 บาท / 7 วัน (ไม่จำกัดชั่วโมง, ใช้ได้ 2 เครื่อง) <br>
  <img src="images/icon_3.jpg" > <font color="#669900" size="-1" style="font-weight:bold">Gold Package</font> <s class="text-red">700</s> ลดเหลือ 400 บาท / 1 เดือน (ไม่จำกัดชั่วโมง, ใช้ได้ 3 เครื่อง) <br>
- <img src="images/icon_3.jpg" > <font color="#FF6600" size="-1" style="font-weight:bold">Diamond Package</font> ซื้อ <font color="#669900">Gold Package</font> 2 อัน ในราคาพิเศษ <s class="text-red">1,200</s> ลดเหลือ 700 บาท<br />
+ <img src="images/icon_3.jpg" > <font color="#FF6600" size="-1" style="font-weight:bold">Diamond Package</font> ซื้อ <font color="#669900">Gold Package</font> 2 อัน ในราคาพิเศษ <s class="text-red">1,200</s> ลดเหลือ 700 บาท 
 (Diamond 1 ซอง มี Gold Package 2 อัน) <br>
 <img src="images/icon_3.jpg" > <font color="#660000" size="-1" style="font-weight:bold">Titanium Package</font> <s class="text-red">3,000</s> ลดเหลือ 1,500 บาท / 6 เดือน (ไม่จำกัดชั่วโมง, ใช้ได้ 5 เครื่อง)  <br>
 
