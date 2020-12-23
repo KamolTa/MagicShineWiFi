@@ -52,7 +52,7 @@ if ($result->num_rows === 1)
   <td  width="471" ><img src="images/hilight.jpg" align="absbottom" alt="hi-speed intenet" border="0" hspace="0"  vspace="0" />
   </td>
 	<td valign="top">
-	<p><h1><b>Pro แรง!!! เน็ตคนละครึ่ง ไม่ต้องสมัครรอ OTP ให้เสียเวลา</b></h1>
+	<p><h1><b>Pro แรง!!! เน็ตคนละครึ่ง</b></h1>
     <p><h1><b>สู้ภัย Covid-19 ลดสูงสุดถึง 50%!!!</b></h1>
 
 	<div style="padding:2px 3px 4px 20px" align="left">
