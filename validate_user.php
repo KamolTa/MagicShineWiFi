@@ -6,6 +6,34 @@ $user = $_POST["username"];
 $pass = $_POST["password"];
 $mac = $_POST["mac"];
 
+$post = [
+    'username' => $user,
+    'password' => $pass
+];
+
+$ch = curl_init("$WIFI_server/get_user_profile");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+$gae = trim(curl_exec($ch));
+
+curl_close($ch);
+
+if($gae == "E")
+{
+    $API = new RouterosAPI();
+    if ($API->connect($MKTWanIP, 'admin', 'enigma')) 
+    {
+        $ARRAY = $API->comm('/tool/user-manager/user/print', array(".proplist" => ".id", "?username" => $user));
+        $response = $API->comm("/tool/user-manager/user/remove", array(".id" => $ARRAY[0]['.id']));
+    }
+    $API->disconnect();
+    
+    echo "E";
+    exit();
+}
+
+
+
 include "lib/connect_db.php";
 
 //Check if user exists in Raspberry Pi

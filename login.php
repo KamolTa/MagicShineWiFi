@@ -43,8 +43,7 @@ if ($result->num_rows > 0)
         $pass = $row["password"];
         $profile = $row["profile"];
         //gae
-        if($update_count % 3 == 0)
-        {
+
             $post = [
                 'mac' => $mac
             ];
@@ -88,11 +87,7 @@ if ($result->num_rows > 0)
                 $pass = "";
             }
 
-        }
-        else
-        {
-            WriteUserToMikroTik(new RouterosAPI(), $MKTWanIP, "admin", "enigma", "admin", $user, $pass, $profile);
-        }
+        
     }
 }
 else
