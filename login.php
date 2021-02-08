@@ -225,7 +225,7 @@ Problem:
                             }
                             else if(response == "FL")
                             {
-                                ShowAlert("Max user limit reached. mac=".$mac);
+                                ShowAlert("Max user limit reached. mac="+$mac);
                                 return;
                             }
                             else if(response == "N")
