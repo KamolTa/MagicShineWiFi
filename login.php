@@ -30,7 +30,7 @@ if($error)
 $sql = "SELECT username, update_count FROM user_mac_status WHERE mac = '$mac' ORDER BY update_time DESC";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) 
+if ($result->num_rows > 0)
 {
     $row = $result->fetch_assoc();
     $user = $row["username"];
@@ -52,9 +52,9 @@ if ($result->num_rows > 0)
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
             $status = curl_exec($ch);
             curl_close($ch);
-            
+
             $s_array = explode(";",$status);
-        
+
             if($s_array[0] == "E")
             {
                 //DELETE FROM RPI
@@ -66,16 +66,16 @@ if ($result->num_rows > 0)
                 $result = $conn->query($sql);
                 header("Location: $MKGateway");
                 exit();
-                
+
                 //delete from mikrotik
                 $API = new RouterosAPI();
-                if($API->connect($MKTWanIP, 'admin', 'enigma') ) 
+                if($API->connect($MKTWanIP, 'admin', 'enigma') )
                 {
                     $ARRAY = $API->comm('/tool/user-manager/user/print', array(".proplist" => ".id", "?username" => $user));
                     $response = $API->comm("/tool/user-manager/user/remove",array(".id" => $ARRAY[0]['.id']));
                 }
                 $API->disconnect();
-                
+
                 $pass = "";
             }
             else if($s_array[0] == "Y")
@@ -87,7 +87,7 @@ if ($result->num_rows > 0)
                 $pass = "";
             }
 
-        
+
     }
 }
 else
@@ -100,7 +100,7 @@ else
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
     $status = curl_exec($ch);
     curl_close($ch);
-            
+
     $s_array = explode(";",$status);
 
     if($s_array[0] == "Y")
@@ -126,13 +126,13 @@ else
         //delete from mikrotik
         $user = trim($s_array[1]);
         $API = new RouterosAPI();
-        if($API->connect($MKTWanIP, 'admin', 'enigma') ) 
+        if($API->connect($MKTWanIP, 'admin', 'enigma') )
         {
             $ARRAY = $API->comm('/tool/user-manager/user/print', array(".proplist" => ".id", "?username" => $user));
             $response = $API->comm("/tool/user-manager/user/remove",array(".id" => $ARRAY[0]['.id']));
         }
         $API->disconnect();
-                
+
         $pass = "";
     }
 }
@@ -164,7 +164,7 @@ function WriteUserToMikroTik($API, $MKTWanIP, $MKTUsername, $MKTPassword, $MKTCu
 }
 
 Problem:
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -192,7 +192,7 @@ Problem:
 		<input type="hidden" name="dst" value="<?php echo $link_orig; ?>" />
 		<input type="hidden" name="popup" value="false" />
 	</form>
-	
+
 	<script type="text/javascript" src="lib/md5.js"></script>
 	<script type="text/javascript">
             function doAutoLogin()
@@ -202,7 +202,7 @@ Problem:
                 document.sendin.submit();
             }
 	    function doLogin() {
-                
+
                   // Fire off the request to /form.php
                     var request = $.ajax({
                         url: "validate_user.php",
@@ -225,7 +225,7 @@ Problem:
                             }
                             else if(response == "FL")
                             {
-                                ShowAlert("Max user limit reached.");
+                                ShowAlert("Max user limit reached. mac=".$mac);
                                 return;
                             }
                             else if(response == "N")
@@ -243,14 +243,14 @@ Problem:
                                 ShowAlert("Unknown error.");
                                 return;
                             }
-                            
+
                     });
 
-    
+
                     request.fail(function (jqXHR, textStatus, errorThrown){
                             ShowAlert("Error connecting to the server.");
                     });
-   
+
 	    }
 	</script>
 <?php }?>
@@ -266,7 +266,7 @@ Problem:
             <div id="alert_div">
                 <?php if($error) {?><div class="alert alert-danger"><?php echo $error; ?></div><?php } ?>
             </div>
-            
+
             <input type="text" name="username" class="form-control mb-4" value="<?php echo $_COOKIE["user"];?>" placeholder="Username">
             <input type="password" name="password" class="form-control mb-4" value="<?php echo $_COOKIE["pass"];?>" placeholder="Password">
             <button class="btn btn-info btn-block" type="button" onclick="doLogin();">Login</button>
@@ -289,7 +289,7 @@ Problem:
               doAutoLogin();
       <?php }?>
   });
-  
+
   function ShowAlert(err_message)
   {
       $("#alert_div").html("<div class='alert alert-danger'>"+err_message+"</div>");
