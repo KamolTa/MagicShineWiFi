@@ -13,8 +13,6 @@ $mac = trim($_GET["mac"]);
 if(isset($_COOKIE["c_mac"])) {
     $mac = trim($_COOKIE["c_mac"]);
 }
-if($mac != "")
-    setcookie("c_mac", $mac, time() + 10 * 365 * 86400);
 
 $uptime = $_GET["uptime"];
 $time_left = $_GET["time_left"];
