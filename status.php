@@ -5,7 +5,15 @@ date_default_timezone_set("Asia/Bangkok");
 include "configs.php";
 
 $username = $_GET["username"];
-$mac = $_GET["mac"];
+$mac = trim($_GET["mac"]);
+
+//Get mac from cookies
+if(isset($_COOKIE["c_mac"])) {
+    $mac = trim($_COOKIE["c_mac"]);
+}
+if($mac != "")
+    setcookie("c_mac", $mac, time() + 10 * 365 * 86400);
+
 $uptime = $_GET["uptime"];
 $time_left = $_GET["time_left"];
 $r_time = $_GET["r_time"];

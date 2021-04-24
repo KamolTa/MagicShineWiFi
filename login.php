@@ -4,6 +4,14 @@ require('lib/routeros_api.class.php');
 include("configs.php");
 
 $mac = trim($_GET["mac"]);
+
+//Get mac from cookies
+if(isset($_COOKIE["c_mac"])) {
+    $mac = trim($_COOKIE["c_mac"]);
+}
+if($mac != "")
+    setcookie("c_mac", $mac, time() + 10 * 365 * 86400);
+
 $error = trim($_GET["error"]);
 if($error == "invalid password")
 {
