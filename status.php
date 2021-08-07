@@ -57,17 +57,21 @@ if ($update_count == "")
 }
 else
 {
-    $post = [
-        'username' => $username,
-        'mac' => $mac,
-        'station_mac' => $station_mac,
-        'login_status' => '1'
-    ];
-    $ch = curl_init("$WIFI_server/set_usage_log");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-    $status = curl_exec($ch);
-    curl_close($ch);
+    if($update_count > 5) {
+        $update_count = 0;
+        $post = [
+            'username' => $username,
+            'mac' => $mac,
+            'station_mac' => $station_mac,
+            'login_status' => '1'
+        ];
+        $ch = curl_init("$WIFI_server/set_usage_log");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+        $status = curl_exec($ch);
+        curl_close($ch);
+    }
+    
 
     $update_count = $update_count + 1;
     $sql = "UPDATE user_mac_status SET update_time = '$dt_str', update_count = '$update_count' WHERE username = '$username' AND mac = '$mac' ";

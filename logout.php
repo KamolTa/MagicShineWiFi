@@ -24,7 +24,7 @@ $dt_str = $datetime->format('Y-m-d H:i:s');
 $station_mac = shell_exec("ifconfig eth0 | grep -Eo ..\(\:..\){5}");
 $station_mac = trim(strtoupper($station_mac));
 
-$post = [
+/*$post = [
     'username' => $username,
     'mac' => $mac,
     'station_mac' => $station_mac,
@@ -34,7 +34,7 @@ $ch = curl_init("$WIFI_server/set_usage_log");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 $status = curl_exec($ch);
-curl_close($ch);
+curl_close($ch);*/
 
 $conn->query("INSERT into usage_log (username, mac, status, log_time) VALUES ('$username', '$mac', '0', '$dt_str')");
 
