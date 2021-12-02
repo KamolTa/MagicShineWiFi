@@ -21,13 +21,13 @@ curl_close($ch);
 if($gae == "E")
 {
     $API = new RouterosAPI();
-    if ($API->connect($MKTWanIP, 'admin', 'enigma')) 
+    if ($API->connect($MKTWanIP, 'admin', 'enigma'))
     {
         $ARRAY = $API->comm('/tool/user-manager/user/print', array(".proplist" => ".id", "?username" => $user));
         $response = $API->comm("/tool/user-manager/user/remove", array(".id" => $ARRAY[0]['.id']));
     }
     $API->disconnect();
-    
+
     echo "E";
     exit();
 }
@@ -37,7 +37,7 @@ if($gae == "E")
 include "lib/connect_db.php";
 
 //Check if user exists in Raspberry Pi
-$sql = "SELECT profile FROM users WHERE username = '$user' AND password = '$pass'  ";
+$sql = "SELECT profile, max_user_num FROM users WHERE username = '$user' AND password = '$pass'  ";
 $result = $conn->query($sql);
 
 //T success
@@ -49,7 +49,8 @@ if($result->num_rows > 0)
 {
     $row = $result->fetch_assoc();
     $profile = $row["profile"];
-    
+    $max_user = $row["max_user_num"];
+
     $sql = "SELECT * FROM profile_login_prop WHERE profile_name = '$profile' ";
     $result = $conn->query($sql);
     if($result->num_rows === 0)
@@ -61,16 +62,20 @@ if($result->num_rows > 0)
     $row = $result->fetch_assoc();
     $type = $row["type"];
     $max_user_num = $row["max_user_num"];
+
+    if($max_user_num < $max_user)
+      $max_user_num = $max_user;
+      
     if($type === "LS")
     {
         $sql = "SELECT username FROM user_mac_status WHERE username = '$user' AND mac = '$mac'";
         $result = $conn->query($sql);
         $row_count = $result->num_rows;
-        
+
         $sql = "SELECT username FROM user_mac_status WHERE username = '$user'";
         $result = $conn->query($sql);
         $row_count_total = $result->num_rows;
-        
+
         if($row_count > 0)
         {
             $user_status = "T";
@@ -84,12 +89,12 @@ if($result->num_rows > 0)
             echo "FL";
             exit();
         }
-        
+
     }
-    else 
+    else
         $user_status = "T";
-    
-    if ($user_status == "T") 
+
+    if ($user_status == "T")
     {
         setcookie("user", $user, time()+(10*365*24*60*60));
         setcookie("pass", $pass, time()+(10*365*24*60*60));
@@ -115,13 +120,13 @@ curl_close($ch);
 if($profile == "E")
 {
     $API = new RouterosAPI();
-    if ($API->connect($MKTWanIP, 'admin', 'enigma')) 
+    if ($API->connect($MKTWanIP, 'admin', 'enigma'))
     {
         $ARRAY = $API->comm('/tool/user-manager/user/print', array(".proplist" => ".id", "?username" => $user));
         $response = $API->comm("/tool/user-manager/user/remove", array(".id" => $ARRAY[0]['.id']));
     }
     $API->disconnect();
-    
+
     echo "E";
     exit();
 }
@@ -158,7 +163,7 @@ function WriteUserToMikroTik($API, $MKTWanIP, $MKTUsername, $MKTPassword, $MKTCu
         $c = trim($ARRAY[0]["customer"]);
         $p = trim($ARRAY[0]["actual-profile"]);
 
-        if ($u == $username && $c == $MKTCustomer && $p != $profile) 
+        if ($u == $username && $c == $MKTCustomer && $p != $profile)
         {
             $ARR = $API->comm("/tool/user-manager/user/create-and-activate-profile", Array(
                 "numbers" => $username,
