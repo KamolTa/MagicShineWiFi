@@ -1,5 +1,5 @@
 <?php
-include "lib/connect_db.php";
+/*include "lib/connect_db.php";
 include "configs.php";
 
 $mac = trim($_GET["mac"]);
@@ -9,7 +9,7 @@ $result = $conn->query($sql);
 if ($result->num_rows === 1)
 {
     header("Location:$MKGateway/login");
-}
+}*/
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="th">
