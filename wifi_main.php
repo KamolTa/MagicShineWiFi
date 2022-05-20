@@ -50,11 +50,7 @@ if ($result->num_rows === 1)
 <table width="100%" cellspacing="0" cellpadding="0" border="0"  >
 <tr>
   <td  width="471" >
-    <!--img src="images/hilight.jpg" align="absbottom" alt="hi-speed intenet" border="0" hspace="0"  vspace="0" /-->
-    <video id="vid" style="width:100%;" controls>
-      <source src="" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <img src="images/hilight.jpg" align="absbottom" alt="hi-speed intenet" border="0" hspace="0"  vspace="0" />
   </td>
 	<td valign="top">
 	<p><h1><b>Pro แรง!!! เน็ตคนละครึ่ง</b></h1>
@@ -138,14 +134,5 @@ if ($result->num_rows === 1)
     </div>
     </div>
 
-    <script>
-      window.onload = function() {
-          var vid = document.getElementById("vid"); 
-          var sources = vid.getElementsByTagName('source');
-          var v_index = Math.floor(Math.random() * 7) + 1;
-          sources[0].src = 'clips/clip' + v_index + '.mp4';
-          vid.load();
-      };
-    </script>
 </body>
 </html>
