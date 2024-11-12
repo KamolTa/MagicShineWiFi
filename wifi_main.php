@@ -70,9 +70,9 @@ if ($result->num_rows === 1)
 
 
 </p>
- 	 <div style="font-size:12px; height:15px;">ติดต่อซื้อรหัสผ่านได้ที่ สำนักงานหอพัก <b>Venezia Residence</b> </div>
+ 	 <div style="font-size:12px; height:15px;">ติดต่อซื้อรหัสผ่านได้ที่ สำนักงานหอพัก <b></b> </div>
 		 <div style="font-size:12px; height:15px;"></div>
-		 <div style="color:#663399; font-weight:300; height:20px; ">สอบถามสถานที่จำหน่ายบัตร Tel. 089-230-8088 (พี่เดี่ยว)</div>
+		 <div style="color:#663399; font-weight:300; height:20px; ">สอบถามสถานที่จำหน่ายบัตร Tel. 061-745-5524</div>
                  <!--div style="color:#663399; font-size:12px;  height:20px; ">ต้องการซื้อผ่านทาง SMS ติดต่อ 081-349-7774 (กมล)</div-->
 
 
